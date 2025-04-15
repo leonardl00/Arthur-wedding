@@ -31,7 +31,7 @@ body::before {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url('bgv3_mini4.png') no-repeat center top;
+    background: url('bgv3_mini6.png') no-repeat center top;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -209,12 +209,11 @@ body::before {
 
 #door-left {
     left: 0;
-    background-image: url('doorL2_mini.png');
+    background-image: url('doorL3_mini.jpg');
+    background-position: right;
     transform-origin: left;
-    transform-origin: right;
     transform-style: preserve-3d;
-    height: 75%;
-    top:7vh;
+    height: 100%;
     position: absolute;
 }
 
@@ -224,8 +223,7 @@ body::before {
     background-position: left;
     transform-origin: left;
     transform-style: preserve-3d;
-    height: 75%;
-    top:7vh;
+    height: 100%;
     position: absolute;
 }
 
