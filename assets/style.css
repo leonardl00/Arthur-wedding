@@ -1,0 +1,181 @@
+body {
+    font-family: 'Playfair Display', serif;
+    color: #4A4A4A;
+    overflow-x: hidden;
+    background: url('bgv3.jpg') no-repeat center top;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('bgv3.jpg') no-repeat center top;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    pointer-events: none;
+}
+
+#quote::after {
+    content: "";
+    position: absolute;
+    left:0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, white, transparent);
+}
+
+.hehe {
+    background: radial-gradient(circle, white 0%, transparent 50%);
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+#cover {
+    background: url('bg8.jpg') no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.blur-cont {
+    box-shadow: 0px 0px 10px 17px rgb(255 255 255 / 0.6);
+}
+
+#cover::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(244, 225, 210, 0) 0%, #fff 100%);
+}
+
+.text-glow {
+    text-shadow: 0px 0px 5px #fff, 0px 0px 5px #fff;
+}
+
+.cover-title {
+    line-height: 10vh;
+}
+
+@font-face {
+    font-family: amsterdam;
+    src: url(Amsterdam_Four_400.ttf);
+}
+
+@media (max-width: 768px) {
+    #cover {
+        background: url('bgv3.jpg') no-repeat center top;
+        background-size: cover;
+        height: 100vh;
+        min-height: 100vh;
+    }
+
+    .hehe {
+        background: radial-gradient(circle, white 0%, transparent 50%);
+        background-size: cover;
+        width: 100%;
+        height: 100vh;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+    }
+}
+
+.content-section {
+    max-width: 90%;
+    width: 600px;
+    padding: 1rem 2rem;
+    margin: auto auto;
+}
+
+.white-section {
+    background-color: white;
+    padding: 0rem 2rem;
+    width: 100%;
+}
+
+.birthstone-regular {
+    font-family: "Birthstone", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.dancing-script {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.amsterdam {
+    font-family: amsterdam;
+    font-weight: 400;
+    font-style: normal;
+}  
+
+.ephesis-regular {
+    font-family: "Ephesis", cursive;
+    font-weight: 400;
+    font-style: normal;
+}  
+
+.parisienne-regular {
+    font-family: "Parisienne", cursive;
+    font-weight: 400;
+    font-style: normal;
+}  
+
+:root {
+    --color-primary: #000; 
+    --color-secondary: #F7D1DF;
+}
+
+.border-primary {
+    border-color: var(--color-primary);
+}
+
+@layer utilities {
+    .bg-primary {
+        background-color: var(--color-primary);
+    }
+    .text-primary {
+        color: var(--color-primary);
+    }
+    .bg-secondary {
+        background-color: var(--color-secondary);
+    }
+    .text-secondary {
+        color: var(--color-secondary);
+    }
+}
+
+#640D0C
+#797e46
