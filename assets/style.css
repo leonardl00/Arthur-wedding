@@ -2,7 +2,7 @@ body {
     font-family: 'Playfair Display', serif;
     color: #4A4A4A;
     overflow-x: hidden;
-    background: url('bgv3.jpg') no-repeat center top;
+    background: url('bgv3_mini.jpg') no-repeat center top;
     background-size: cover;
     background-attachment: fixed;
     width: 100%;
@@ -16,12 +16,32 @@ body::before {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: url('bgv3.jpg') no-repeat center top;
+    background: url('bgv3_mini.jpg') no-repeat center top;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
     pointer-events: none;
+}
+
+.flower {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('bgv3_mini4.png') no-repeat center top;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 10;
+    pointer-events: none;
+}
+
+#quote {
+    position: absolute;
+    z-index: 20;
 }
 
 #quote::after {
@@ -58,6 +78,7 @@ body::before {
     justify-content: center;
     text-align: center;
     position: relative;
+    z-index: 30;
 }
 
 .blur-cont {
