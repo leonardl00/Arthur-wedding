@@ -175,7 +175,7 @@
         <!-- Dress Code Section -->
         <div class="content-section">
                 <div data-aos="zoom-in" data-aos-duration="1000">
-                <h2 class="text-xl md:text-3xl dancing-script mt-8">~ Dress Code ~</h2>
+                <h2 class="text-gray-900 text-xl md:text-3xl dancing-script mt-8">~ Dress Code ~</h2>
                 <div class="flex gap-2 mt-4 mx-auto w-fit text-center">
                     <!-- Male Div -->
                     <div class="w-20 h-20 rounded-full flex items-center justify-center" style="background-color: #000000;">
@@ -196,13 +196,13 @@
                     <div><img src="assets/IMG5.jpg" class="rounded-xl" alt="Wedding Photo 5"></div>
                 </div> -->
         
-                <h2 class="text-xl md:text-3xl dancing-script mt-8">~ Counting Days ~</h2>
+                <h2 class="text-gray-900 text-xl md:text-3xl dancing-script mt-8">~ Counting Days ~</h2>
                 <div id="timer" class="simply-countdown mt-4"></div>
 
                 <div class="text-gray-900 text-center dancing-script mt-8">
-                    <h2 class="text-xl md:text-3xl">~ Wishes ~</h2>
+                    <h2 class="text-gray-900 text-xl md:text-3xl">~ Wishes ~</h2>
                     
-                    <div class="w-full max-w-md p-4 overflow-y-scroll h-[50vh]">
+                    <div class="w-full max-w-md p-4 max-h-[50vh] overflow-y-auto">
                         <div id="wishContainer" class="space-y-2">
                             <!-- Wishes will be dynamically inserted here -->
                         </div>
@@ -210,22 +210,9 @@
                 </div>
 
                 <!-- Write Wish Button -->
-                <button onclick="openForm()" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg shadow">
-                    Write a Wish
+                <button onclick="openForm()" class="mt-2 text-gray-100 py-3 px-5 rounded-lg font-bold hover:scale-110 bg-[#797e46] hover:shadow-xl transition-all">
+                    Write a Message
                 </button>
-
-                <!-- Overlay Form -->
-                <div id="formOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-                    <div class="bg-white p-6 rounded-lg w-80 shadow-xl space-y-4">
-                    <h2 class="text-xl font-semibold text-gray-800">Write Your Wish</h2>
-                    <input id="nameInput" type="text" placeholder="Your Name" class="w-full border border-gray-300 rounded px-3 py-2"/>
-                    <textarea id="wishInput" rows="4" placeholder="Your Wish..." class="w-full border border-gray-300 rounded px-3 py-2"></textarea>
-                    <div class="flex justify-end space-x-2">
-                        <button onclick="closeForm()" class="text-gray-600 hover:text-gray-800">Cancel</button>
-                        <button onclick="submitWish()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Submit</button>
-                    </div>
-                    </div>
-                </div>
                 
                 <div class="text-gray-900 text-center dancing-script mt-8">
                     <h2 class="text-xl md:text-3xl">~ Contact ~</h2>
@@ -279,7 +266,7 @@
                 <div class="grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 gap-4">
                     <!-- Attendance Details Column -->
                     <div class="p-4 border border-[#797e46] bg-[#797e46] shadow-md rounded-lg">
-                        <div class="text-center font-semibold text-lg mb-2">Holy Matrimony<br><span class="font-light">Stella Maris Church</span></div>
+                        <div class="text-gray-100 text-center font-semibold text-lg mb-2">Holy Matrimony<br><span class="font-light">Stella Maris Church</span></div>
                         
                         <!-- Attendance Dropdown -->
                         <select name="Church-Attandance" required class="p-3 rounded-lg border border-gray-300 w-full">
@@ -292,7 +279,7 @@
                 
                     <!-- Event Selection Column -->
                     <div class="p-4 border border-[#797e46] bg-[#797e46] shadow-md rounded-lg">
-                        <div class="text-center font-semibold text-lg mb-2">Wedding Reception<br><span class="font-light">Ming Garden Hotel</span></div>
+                        <div class="text-gray-100 text-center font-semibold text-lg mb-2">Wedding Reception<br><span class="font-light">Ming Garden Hotel</span></div>
                 
                         <!-- Attendance Dropdown -->
                         <select name="Reception-Attendance" required class="p-3 rounded-lg border border-gray-300 w-full">
@@ -356,7 +343,7 @@
                 <input type="tel" name="Phone" placeholder="Your Phone (Optional)" class="p-3 rounded-lg border border-gray-300">
                 <input type="number" name="Pax" placeholder="Number of Guests" min="1" required class="p-3 rounded-lg border border-gray-300"> -->
                 <textarea name="Message" placeholder="Leave a message (Optional)" class="p-3 rounded-lg border border-gray-300"></textarea>
-                <button type="submit" class=" text-gray-900 py-3 px-5 rounded-lg font-bold hover:scale-110 bg-[#797e46] hover:shadow-xl transition-all">Submit RSVP</button>
+                <button type="submit" class=" text-gray-100 py-3 px-5 rounded-lg font-bold hover:scale-110 bg-[#797e46] hover:shadow-xl transition-all">Submit RSVP</button>
             </form>
             <p class="hidden text-lg font-bold highlight-text mt-4" id="thank-you">Thank you for your RSVP! 💖</p>
         </div>
@@ -394,6 +381,19 @@
         <p class="text-lg text-white drop-shadow-lg text-glow-black">Tap to enter</p>
         </div>
     </div>
+
+    <!-- Overlay Form -->
+    <div id="formOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-end justify-center z-50">
+        <div class="bg-white p-6 rounded-t-2xl w-full max-w-md shadow-xl space-y-4" onclick="event.stopPropagation()">
+            <h2 class="text-xl font-semibold text-gray-800">Write Your Wish</h2>
+            <input id="nameInput" type="text" placeholder="Your Name" class="w-full border border-gray-300 rounded px-3 py-2" />
+            <textarea id="wishInput" rows="4" placeholder="Your Wish..." class="w-full border border-gray-300 rounded px-3 py-2"></textarea>
+            <div class="flex space-x-2">
+                <button onclick="closeForm()" class="flex-1 text-gray-600 hover:text-gray-800 border border-gray-300 py-3 px-5 rounded-lg">Cancel</button>
+                <button onclick="submitWish()" class="flex-1 text-gray-100 py-3 px-5 rounded-lg font-bold hover:scale-110 bg-[#797e46] hover:shadow-xl transition-all">Submit</button>
+            </div>            
+        </div>
+    </div>    
 
     <script>
         const fabButton = document.getElementById("fabButton");
@@ -576,6 +576,13 @@
         function closeForm() {
             document.getElementById("formOverlay").classList.add("hidden");
         }
+
+        const overlay = document.getElementById('formOverlay');
+        overlay.addEventListener('click', function (e) {
+            if (e.target === overlay) {
+                closeForm();
+            }
+        });
 
         async function submitWish() {
             const name = document.getElementById("nameInput").value.trim();
