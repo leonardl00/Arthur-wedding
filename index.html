@@ -44,7 +44,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Birthstone&family=Dancing+Script:wght@400..700&family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&family=DynaPuff:wght@400..700&family=Ephesis&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Parisienne&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/style.css?2">
+    <link rel="stylesheet" href="assets/style.css?1">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body class="text-center">
@@ -202,21 +202,29 @@
                 <div class="text-gray-900 text-center dancing-script mt-8">
                     <h2 class="text-xl md:text-3xl">~ Wishes ~</h2>
                     
-                    <p class="">
-                        “Congratulations on taking one step closer to happily ever after. Take care of your relationship, give and take each other and never fail to in love everyday. ❤️❤️”  
-                        <br>
-                        <Span>Lorem Ipsum</Span>
-                    </p>
-                    <p class="">
-                        “Congratulations on taking one step closer to happily ever after. Take care of your relationship, give and take each other and never fail to in love everyday. ❤️❤️”  
-                        <br>
-                        <Span>Lorem Ipsum</Span>
-                    </p>
-                    <p class="">
-                        “Congratulations on taking one step closer to happily ever after. Take care of your relationship, give and take each other and never fail to in love everyday. ❤️❤️”  
-                        <br>
-                        <Span>Lorem Ipsum</Span>
-                    </p>
+                    <div class="w-full max-w-md p-4 overflow-y-scroll h-[50vh]">
+                        <div id="wishContainer" class="space-y-2">
+                            <!-- Wishes will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Write Wish Button -->
+                <button onclick="openForm()" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg shadow">
+                    Write a Wish
+                </button>
+
+                <!-- Overlay Form -->
+                <div id="formOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+                    <div class="bg-white p-6 rounded-lg w-80 shadow-xl space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-800">Write Your Wish</h2>
+                    <input id="nameInput" type="text" placeholder="Your Name" class="w-full border border-gray-300 rounded px-3 py-2"/>
+                    <textarea id="wishInput" rows="4" placeholder="Your Wish..." class="w-full border border-gray-300 rounded px-3 py-2"></textarea>
+                    <div class="flex justify-end space-x-2">
+                        <button onclick="closeForm()" class="text-gray-600 hover:text-gray-800">Cancel</button>
+                        <button onclick="submitWish()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Submit</button>
+                    </div>
+                    </div>
                 </div>
                 
                 <div class="text-gray-900 text-center dancing-script mt-8">
@@ -540,6 +548,61 @@
 
         document.getElementById("wa-Paulin").href = "https://wa.me/" + atob("NjAxNjg0MjgxMjE=");
         document.getElementById("phone-Paulin").href = "tel:+" + atob("NjAxNjg0MjgxMjE=");
+
+        const API_URL = 'https://script.google.com/macros/s/AKfycbw3Hri5b_mieCSFexaMfPrGrGY-WbBa1D1G9md8RxwVKeX0BgNiSgylaZEL0L03cxF4/exec';
+
+        async function loadWishes() {
+            const container = document.getElementById("wishContainer");
+            container.innerHTML = "<p class='text-center text-gray-500'>Loading...</p>";
+            const res = await fetch(API_URL);
+            const wishes = await res.json();
+
+            container.innerHTML = "";
+            wishes.reverse().forEach(wish => {
+                const card = document.createElement("div");
+                card.className = ``;
+                card.innerHTML = `
+                <p class="text-gray-600 mt-2 nunito-regular">"${item.wish}"</p>
+                <p class="font-semibold text-md text-gray-700 nunito-regular">${item.name}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function openForm() {
+            document.getElementById("formOverlay").classList.remove("hidden");
+        }
+
+        function closeForm() {
+            document.getElementById("formOverlay").classList.add("hidden");
+        }
+
+        async function submitWish() {
+            const name = document.getElementById("nameInput").value.trim();
+            const wish = document.getElementById("wishInput").value.trim();
+
+            if (!name || !wish) {
+                alert("Please fill in both fields.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("Name", name);
+            formData.append("Wish", wish);
+
+            await fetch(API_URL, {
+                method: 'POST',
+                body: formData
+            });
+
+            closeForm();
+            document.getElementById("nameInput").value = "";
+            document.getElementById("wishInput").value = "";
+            loadWishes();
+        }
+
+        // Load on page load
+        loadWishes();
     </script>
 </body>
 </html>
