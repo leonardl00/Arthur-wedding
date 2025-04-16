@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Max Width Web</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: white; /* This is your white border area */
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 425px;
+      width: 100%;
+      background-color: #f5f5f5; /* Light gray content area for contrast */
+      min-height: 100vh; /* Fill the height of the screen */
+      box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Optional visual enhancement */
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hello!</h1>
+    <p>This page will always be max 425px wide and centered, with white borders on wider screens.</p>
+  </div>
+</body>
+</html>

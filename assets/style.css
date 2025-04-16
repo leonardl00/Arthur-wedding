@@ -1,36 +1,43 @@
+.wrapper {
+    max-width: 425px;
+    margin: 0 auto;
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    padding: 0;
+    background: url('bgv3_mini.jpg') no-repeat center -2000px;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 body {
     font-family: 'Playfair Display', serif;
     color: #4A4A4A;
+    background-color: #928458;
     overflow-x: hidden;
-    background: url('bgv3_mini.jpg') no-repeat center top;
-    background-size: cover;
-    background-attachment: fixed;
-    width: 100%;
-    height: 100vh;
 }
 
-body::before {
+.flower-main {
     content: "";
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    max-width: 425px;
+    height: 100%;
     background: url('bgv3_mini.jpg') no-repeat center top;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: -1;
+    z-index: -10;
     pointer-events: none;
 }
-
 .flower {
     content: "";
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    max-width: 425px;
+    height: 100%;
     background: url('bgv3_mini6.png') no-repeat center top;
     background-size: cover;
     background-position: center;
@@ -66,8 +73,9 @@ body::before {
     text-align: center;
     position: relative;
 }
+
 #cover {
-    background: url('bg8.jpg') no-repeat center center;
+    background: url('bgv3_mini.jpg') no-repeat center top;
     background-size: cover;
     width: 100%;
     height: 100vh;
@@ -134,9 +142,28 @@ body::before {
     }
 }
 
+.simply-countdown>.simply-section {
+    width: 65px;
+    height: 65px;
+    padding: 1.5rem;
+}
+
 .simply-countdown {
     flex-wrap: nowrap;
     gap: 0.25rem;
+    overflow: unset;
+}
+
+@media (max-width: 375px) {
+    .simply-countdown {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+        overflow: unset;
+    }
+}
+
+.simply-countdown>.simply-section .simply-word {
+    font-size: .6rem;
 }
 
 .content-section {
@@ -214,30 +241,98 @@ body::before {
 }
 
 
-#door-left {
+#door-overlay {
+    position: fixed;
+    top: 0;
     left: 0;
-    background-image: url('doorL3_mini.jpg');
-    background-position: right;
-    transform-origin: left;
-    transform-style: preserve-3d;
+    width: 100vw;
+    height: 100vh;
+    margin-left: calc(-50vw + 50%);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 2000px;
+    overflow: hidden;
+}
+
+#door-left,
+#door-right {
     height: 100%;
     position: absolute;
+    top: 0;
+}
+
+#door-left {
+    left: 0;
+    width: 50%;
+    background-image: url('doorL3_mini.jpg');
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    z-index: 30;
 }
 
 #door-right {
     right: 0;
+    width: 50%;
     background-image: url('doorR2_mini.png');
+    background-size: contain;
     background-position: left;
-    transform-origin: left;
+    background-repeat: no-repeat;
+    transform-origin: right;
     transform-style: preserve-3d;
-    height: 100%;
-    position: absolute;
+    z-index: 30;
 }
 
 .door {
-    width: 50%;
-    height: 100%;
-    background-size: contain;
-    transform-origin: center left;
     backface-visibility: hidden;
+}
+
+#flower-arch {
+    position: absolute;
+    top: 0;
+    margin-left: calc(-50vw + 50%);
+    height: 100vh;
+    object-fit: cover;
+    z-index: 40;
+    pointer-events: none;
+}
+
+@media (min-width: 426px) {
+    .side-border {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        margin-left: calc(-50vw + 50%);
+        display: flex;
+        justify-content: space-between;
+        z-index: 41; /* just above flower-arch */
+
+        pointer-events: none; /* avoid blocking interactions */
+    }
+
+    .side-border::before,
+    .side-border::after {
+        content: "";
+        width: calc((100vw - 425px) / 2);
+        height: 100%;
+        background-color: #e2bfaa;
+    }
+}
+
+
+#door-text {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
 }
