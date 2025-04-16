@@ -392,7 +392,7 @@
             <textarea id="wishInput" rows="4" placeholder="Your Wish..." class="w-full border border-gray-300 rounded px-3 py-2"></textarea>
             <div class="flex space-x-2">
                 <button onclick="closeForm()" class="flex-1 text-gray-600 hover:text-gray-800 border border-gray-300 py-3 px-5 rounded-lg">Cancel</button>
-                <button onclick="submitWish()" class="flex-1 text-gray-100 py-3 px-5 rounded-lg font-bold hover:scale-110 bg-[#797e46] hover:shadow-xl transition-all">Submit</button>
+                <button id="submitButton" onclick="submitWish()" class="flex-1 text-gray-100 py-3 px-5 rounded-lg font-bold hover:scale-110 bg-[#797e46] hover:shadow-xl transition-all">Submit</button>
             </div>            
         </div>
     </div>    
@@ -610,11 +610,20 @@
         async function submitWish() {
             const name = document.getElementById("nameInput").value.trim();
             const wish = document.getElementById("wishInput").value.trim();
+            const submitButton = document.getElementById("submitButton");
 
             if (!name || !wish) {
                 alert("Please fill in both fields.");
                 return;
             }
+
+            // Disable submit button to prevent duplicate submissions
+            submitButton.disabled = true;
+            submitButton.innerHTML = `
+                <svg class="animate-spin h-5 w-5 mr-2 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                </svg> Submitting...`;
 
             const formData = new FormData();
             formData.append("type", "wishes");
@@ -622,18 +631,24 @@
             formData.append("Wish", wish);
 
             try {
+                // Perform the POST request
                 await fetch(API_URL, {
                     method: 'POST',
                     body: formData
                 });
 
+                // Clear the form and close it
                 closeForm();
                 document.getElementById("nameInput").value = "";
                 document.getElementById("wishInput").value = "";
-                loadWishes();
+                loadWishes(); // Refresh wishes list
+
             } catch (error) {
+                // Show an error message and re-enable the button
                 alert("Failed to submit wish.");
                 console.error("Submit wish error:", error);
+                submitButton.disabled = false;
+                submitButton.innerHTML = "Submit";
             }
         }
 
