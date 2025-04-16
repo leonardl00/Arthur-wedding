@@ -203,12 +203,12 @@
                 <div class="text-gray-900 text-center dancing-script mt-8">
                     <h2 class="text-gray-900 text-xl">~ Wishes ~</h2>
                     
-                    <div class="w-full max-w-md p-4 max-h-[50vh] overflow-y-auto">
+                    <div class="w-full max-w-md p-4 max-h-[50vh] overflow-hidden relative">
                         <div id="wishContainer" class="space-y-2">
                             <!-- Wishes will be dynamically inserted here -->
                         </div>
                     </div>
-                </div>
+                </div>                
 
                 <!-- Write Wish Button -->
                 <button onclick="openForm()" class="mt-2 text-gray-100 py-3 px-5 rounded-lg font-bold hover:scale-110 bg-[#797e46] hover:shadow-xl transition-all">
@@ -422,51 +422,98 @@
             }
         });
 
-        AOS.init();
+        function startAutoScroll() {
+            const container = document.querySelector("#wishContainer");
+            const parent = container.parentElement;
+
+            // Duplicate content for infinite scroll illusion
+            container.innerHTML += container.innerHTML;
+
+            let scrollAmount = 0;
+
+            function scrollLoop() {
+                scrollAmount += 0.5; // adjust speed here
+                if (scrollAmount >= container.scrollHeight / 2) {
+                    scrollAmount = 0;
+                }
+                parent.scrollTop = scrollAmount;
+                requestAnimationFrame(scrollLoop);
+            }
+
+            scrollLoop();
+        }
 
         document.getElementById("door-overlay").addEventListener("click", () => {
-        // Door swings
-        gsap.to("#door-left", {
-            rotateY: -100,
-            duration: 1.2,
-            opacity: 0,
-            ease: "power3.inOut",
-            transformOrigin: "left center"
-        });
+            // Door swings
+            gsap.to("#door-left", {
+                rotateY: -100,
+                duration: 1.2,
+                opacity: 0,
+                ease: "power3.inOut",
+                transformOrigin: "left center"
+            });
 
-        gsap.to("#door-right", {
-            rotateY: 100,
-            duration: 1.2,
-            opacity: 0,
-            ease: "power3.inOut",
-            transformOrigin: "right center"
-        });
+            gsap.to("#door-right", {
+                rotateY: 100,
+                duration: 1.2,
+                opacity: 0,
+                ease: "power3.inOut",
+                transformOrigin: "right center"
+            });
 
-        // Text fades out
-        gsap.to("#door-text", {
-            opacity: 0,
-            duration: 0.8,
-            ease: "power1.inOut"
-        });
+            // Text fades out
+            gsap.to("#door-text", {
+                opacity: 0,
+                duration: 0.8,
+                ease: "power1.inOut"
+            });
 
-        // Flower Arch zooms in
-        gsap.to("#flower-arch", {
-            scale: 3,
-            duration: 0.4,
-            ease: "power2.inOut"
-        });
+            // Flower Arch zooms in
+            gsap.to("#flower-arch", {
+                scale: 3,
+                duration: 0.4,
+                ease: "power2.inOut"
+            });
 
-        // Overlay fades out completely
-        gsap.to("#door-overlay", {
-            delay: 1,
-            opacity: 0,
-            pointerEvents: "none",
-            onComplete: () => {
-            document.getElementById("door-overlay").style.display = "none";
-            }
-        });
-        });
+            // Overlay fades out completely
+            gsap.to("#door-overlay", {
+                delay: 1,
+                opacity: 0,
+                pointerEvents: "none",
+                onComplete: () => {
+                    document.getElementById("door-overlay").style.display = "none";
+                }
+            });
 
+            AOS.init();
+
+            startAutoScroll();
+
+            // Auto scroll after delay
+            let autoScrollActive = true;
+            const autoScroll = () => {
+                if (autoScrollActive) {
+                    window.scrollBy({ top: 5, behavior: 'smooth' });
+                    requestAnimationFrame(autoScroll);
+                }
+            };
+
+            setTimeout(() => {
+                autoScroll();
+            }, 2000); // Delay for 1 second after door animation ends (approx 1s + 1s buffer)
+
+            // Stop scroll on user interaction
+            const stopScroll = () => {
+                autoScrollActive = false;
+                window.removeEventListener("wheel", stopScroll);
+                window.removeEventListener("touchstart", stopScroll);
+                window.removeEventListener("keydown", stopScroll);
+            };
+
+            window.addEventListener("wheel", stopScroll);
+            window.addEventListener("touchstart", stopScroll);
+            window.addEventListener("keydown", stopScroll);
+        });
 
         // use a script tag or an external JS file
         document.addEventListener("DOMContentLoaded", (event) => {
