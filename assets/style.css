@@ -5,7 +5,7 @@
     position: relative;
     z-index: 1;
     padding: 0;
-    background: url('bgv3_mini.jpg') no-repeat center -2000px;
+    background: url('bgv3_tiny1.jpg') no-repeat center -2000px;
     background-size: cover;
     background-attachment: fixed;
 }
@@ -24,7 +24,7 @@ body {
     width: 100%;
     max-width: 425px;
     height: 100%;
-    background: url('bgv3_mini.jpg') no-repeat center top;
+    background: url('bgv3_tiny1.jpg') no-repeat center top;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -38,7 +38,7 @@ body {
     width: 100%;
     max-width: 425px;
     height: 100%;
-    background: url('bgv3_mini6.png') no-repeat center top;
+    background: url('bgv3_mini8.webp') no-repeat center top;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -75,7 +75,7 @@ body {
 }
 
 #cover {
-    background: url('bgv3_mini.jpg') no-repeat center top;
+    background: url('bgv3_tiny1.jpg') no-repeat center top;
     background-size: cover;
     width: 100%;
     height: 100vh;
@@ -121,7 +121,7 @@ body {
 
 @media (max-width: 768px) {
     #cover {
-        background: url('bgv3_mini.jpg') no-repeat center top;
+        background: url('bgv3_tiny1.jpg') no-repeat center top;
         background-size: cover;
         height: 100vh;
         min-height: 100vh;
@@ -278,7 +278,7 @@ body {
 #door-right {
     right: 0;
     width: 50%;
-    background-image: url('doorR2_mini.png');
+    background-image: url('doorR2_mini.jpg');
     background-size: contain;
     background-position: left;
     background-repeat: no-repeat;
